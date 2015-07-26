@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/pixelgrade/custom_body_class.svg?branch=dev)](https://travis-ci.org/pixelgrade/custom_body_class)
+[![Build Status](https://travis-ci.org/andreilupu/wp-custom-css-body-class.svg)](https://travis-ci.org/andreilupu/wp-custom-css-body-class)
 
 custom_body_class
 =========

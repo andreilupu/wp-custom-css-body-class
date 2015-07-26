@@ -1,12 +1,13 @@
 # whitelist
 branches:
   only:
-    - wporg
+    - dev
 
 language: php
 
 php:
 - 5.2
+- 5.3
 
 env:
   - WP_VERSION=latest WP_MULTISITE=0

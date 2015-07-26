@@ -6,9 +6,9 @@
  * provide the user interface to the end user.
  *
  * @package   PixTypes
- * @author    Pixelgrade <contact@pixelgrade.com>
+ * @author    Andrei Lupu <andrei.lupu@pixelgrade.com>
  * @license   GPL-2.0+
- * @link      http://pixelgrade.com
+ * @link      http://andrei-lupu.com
  * @copyright 2013 Pixel Grade Media
  */
 
@@ -23,7 +23,7 @@ $errors    = $processor->errors(); ?>
 
 	<div id="icon-options-general" class="icon32"><br></div>
 
-	<h2><?php _e( 'CustomBodyClass', 'custom_body_class_txtd' ); ?></h2>
+	<h2><?php _e( 'Custom Body Class', 'custom_body_class_txtd' ); ?></h2>
 
 	<?php if ( $processor->ok() ): ?>
 

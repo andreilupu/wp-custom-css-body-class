@@ -2,16 +2,16 @@
 /**
  * CustomBodyClass.
  * @package   CustomBodyClass
- * @author    Pixelgrade <contact@pixelgrade.com>
+ * @author    Andrei Lupu <andrei.lupu@pixelgrade.com>
  * @license   GPL-2.0+
- * @link      http://pixelgrade.com
- * @copyright 2014 Pixelgrade
+ * @link      http://andrei-lupu.com
+ * @copyright 2014 Andrei Lupu
  */
 
 /**
  * Plugin class.
  * @package   CustomBodyClass
- * @author    Pixelgrade <contact@pixelgrade.com>
+ * @author    Andrei Lupu <andrei.lupu@pixelgrade.com>
  */
 class CustomBodyClassPlugin {
 
@@ -79,10 +79,11 @@ class CustomBodyClassPlugin {
 		$plugin_basename = plugin_basename( plugin_dir_path( __FILE__ ) . 'custom_body_class.php' );
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
-
-		// add the metabox
-		add_action( 'add_meta_boxes', array( $this, 'add_custom_body_class_meta_box' ) );
-		add_action( 'save_post', array( $this, 'custom_body_class_save_meta_data' ) );
+		if ( isset( $this->plugin_settings['allow_edit_on_post_page'] ) && $this->plugin_settings['allow_edit_on_post_page'] ) {
+			// add the metabox
+			add_action( 'add_meta_boxes', array( $this, 'add_custom_body_class_meta_box' ) );
+			add_action( 'save_post', array( $this, 'custom_body_class_save_meta_data' ) );
+		}
 
 		add_filter( 'body_class', array( $this, 'add_post_type_custom_body_class_in_front' ) );
 	}
@@ -138,7 +139,7 @@ class CustomBodyClassPlugin {
 	 * Register the administration menu for this plugin into the WordPress Dashboard menu.
 	 */
 	function add_plugin_admin_menu() {
-		$this->plugin_screen_hook_suffix = add_options_page( __( 'CustomBodyClass', $this->plugin_slug ), __( 'CustomBodyClass', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array(
+		$this->plugin_screen_hook_suffix = add_options_page( __( 'Custom Body Class', $this->plugin_slug ), __( 'Custom Body Class', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array(
 			$this,
 			'display_plugin_admin_page'
 		) );
@@ -197,9 +198,9 @@ class CustomBodyClassPlugin {
 		$value = get_post_meta( $post->ID, '_custom_body_class', true );
 
 		echo '<label for="body_class_new_field">';
-		_e( 'Add here a custom class only for this page', 'body_class_textdomain' );
+		_e( 'Add here your unique CSS class:', 'body_class_textdomain' );
 		echo '</label> ';
-		echo '<input type="text" id="custom_body_class_value" name="custom_body_class_value" value="' . esc_attr( $value ) . '" size="35" />';
+		echo '<input type="text" id="custom_body_class_value" name="custom_body_class_value" value="' . esc_attr( $value ) . '" size="32" />';
 	}
 
 	/**

@@ -1,19 +1,19 @@
 <?php
 /*
 * @package   CustomBodyClass
-* @author    PixelGrade <contact@pixelgrade.com>
+* @author    PixelGrade <andrei.lupu@pixelgrade.com>
 * @license   GPL-2.0+
-* @link      http://pixelgrade.com
+* @link      http://andrei-lupu.com
 * @copyright 2014 PixelGrade
 *
 * @wordpress-plugin
 Plugin Name: CustomBodyClass
-Plugin URI:  http://pixelgrade.com
+Plugin URI:  http://andrei-lupu.com
 Description: WordPress easy custom fields management plugin.
 Version: 0.0.1
 Author: PixelGrade
-Author URI: http://pixelgrade.com
-Author Email: contact@pixelgrade.com
+Author URI: http://andrei-lupu.com
+Author Email: andrei.lupu@pixelgrade.com
 Text Domain: proof
 License:     GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
