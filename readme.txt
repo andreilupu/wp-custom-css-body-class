@@ -7,7 +7,7 @@ Stable tag: 0.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin allows you to add a custom CSS class the HTML body tag
+A plugin which allows you to add a custom CSS class the HTML body tag
 
 == Description ==
 
@@ -16,7 +16,7 @@ You can use this plugin to add an unique CSS class to your pages or posts.
 == Installation ==
 
 1. Install Custom Body Class either via the WordPress.org plugin directory, or by uploading the files to your `/wp-content/plugins/` directory
-2. After activating CustomBodyClass go to any edit page and see the CustomBodyClass metabox in the right sidebar.
+2. After activating Custom Body Class go to any edit page and see the Custom Body Class metabox in the right sidebar.
 
 == Changelog ==
 
