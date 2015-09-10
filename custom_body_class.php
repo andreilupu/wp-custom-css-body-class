@@ -7,14 +7,14 @@
 * @copyright 2014 PixelGrade
 *
 * @wordpress-plugin
-Plugin Name: CustomBodyClass
+Plugin Name: Custom Body Class
 Plugin URI:  http://andrei-lupu.com
-Description: WordPress easy custom fields management plugin.
-Version: 0.0.1
-Author: PixelGrade
+Description: A plugin which allows you to add a custom CSS class the HTML body tag
+Version: 0.0.3
+Author: Andrei Lupu
 Author URI: http://andrei-lupu.com
 Author Email: andrei.lupu@pixelgrade.com
-Text Domain: proof
+Text Domain: custom_body_class
 License:     GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 Domain Path: /lang
