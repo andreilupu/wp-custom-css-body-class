@@ -80,6 +80,9 @@ class CustomBodyClassPlugin {
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
 		if ( isset( $this->plugin_settings['allow_edit_on_post_page'] ) && $this->plugin_settings['allow_edit_on_post_page'] ) {
+
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
+
 			// add the metabox
 			add_action( 'add_meta_boxes', array( $this, 'add_custom_body_class_meta_box' ) );
 			add_action( 'save_post', array( $this, 'custom_body_class_save_meta_data' ) );
@@ -87,6 +90,23 @@ class CustomBodyClassPlugin {
 
 		add_filter( 'body_class', array( $this, 'add_post_type_custom_body_class_in_front' ) );
 	}
+
+
+	/**
+	 * Settings page scripts
+	 */
+	function enqueue_admin_assets() {
+
+		$screen = get_current_screen();
+		if (is_admin() && $this->is_edit_page() ) {
+			wp_enqueue_style( $this->plugin_slug . '-admin-style', plugins_url( 'css/admin-custom-body-class.css', __FILE__ ), array(  ), $this->version );
+			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'js/admin-custom-body-class.js', __FILE__ ), array( 'jquery' ), $this->version );
+//			wp_localize_script( $this->plugin_slug . '-admin-script', 'locals', array(
+//				'ajax_url' => admin_url( 'admin-ajax.php' )
+//			) );
+		}
+	}
+
 
 	/**
 	 * Return an instance of this class.
@@ -198,7 +218,7 @@ class CustomBodyClassPlugin {
 		$value = get_post_meta( $post->ID, '_custom_body_class', true );
 
 		echo '<label for="body_class_new_field">';
-		_e( 'Add here your unique CSS class:', 'body_class_textdomain' );
+//		_e( 'Add here your unique CSS class:', 'body_class_textdomain' );
 		echo '</label> ';
 		echo '<input type="text" id="custom_body_class_value" name="custom_body_class_value" value="' . esc_attr( $value ) . '" size="32" />';
 	}
@@ -235,13 +255,27 @@ class CustomBodyClassPlugin {
 		/* OK, it's safe for us to save the data now. */
 
 		// Make sure that it is set.
-		if ( ! isset( $_POST['custom_body_class_value'] ) || empty( $_POST['custom_body_class_value'] ) ) {
+		if ( ! isset( $_POST['custom_body_class_value'] ) ) {
 			return;
 		}
 
 		global $post;
+
 		$old_value = get_post_meta( $post_id, '_custom_body_class', true );
-		$sanitized_value = sanitize_html_class( $_POST['custom_body_class_value'] );
+
+		// if the value is empty just clear the field
+		if ( empty( $_POST['custom_body_class_value'] ) ) {
+			update_post_meta( $post_id, '_custom_body_class', '', $old_value);
+			return;
+		}
+
+		$classes_array = explode( ' ', $_POST['custom_body_class_value'] );
+
+		foreach ( $classes_array as $key => $class ) {
+			$classes_array[$key] = sanitize_html_class( $class );
+		}
+
+		$sanitized_value = implode( ' ', $classes_array );
 
 		if ( ! empty( $sanitized_value ) ) {
 			update_post_meta( $post_id, '_custom_body_class', $sanitized_value, $old_value);
@@ -254,10 +288,14 @@ class CustomBodyClassPlugin {
 			global $post;
 
 			if ( isset ( $post->ID ) ) {
-				$value = sanitize_html_class( get_post_meta( $post->ID, '_custom_body_class', true ) );
+				$class_string = get_post_meta( $post->ID, '_custom_body_class', true );
 
-				if  ( ! empty( $value ) ) {
-					$classes[] = $value;
+				if  ( ! empty( $class_string ) ) {
+					$classes_array = explode( ' ', $class_string );
+
+					foreach ( $classes_array as $key => $class ) {
+						$classes[] = sanitize_html_class($class);
+					}
 				}
 			}
 		}
