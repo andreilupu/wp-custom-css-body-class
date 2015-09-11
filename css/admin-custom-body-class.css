@@ -1,27 +1,25 @@
 /* surrounding tag container */
 .tag-editor {
-	list-style-type: none; padding: 0 5px 25px 4px; margin: 0; overflow: hidden; border: 1px solid #eee; cursor: text;
-	font: normal 14px sans-serif; color: #555; background: #fff;
+	list-style-type: none; padding: 0 5px 25px 0; margin: 0; overflow: hidden;
 	position: relative;
 }
 
 .tag-editor:after {
-	color: #dddddd;
+	color: #666;
 	font-style: italic;
-	font-size: 14px;
+	font-size: 12px;
 	content: "Click here to add classes";
 	position: absolute;
-	bottom: 4px;
+	bottom: 0;
 	left: 4px;
 }
 
 /* core styles usually need no change */
-.tag-editor li { display: block; float: left; overflow: hidden; margin: 3px 0; line-height: 1.5; }
+.tag-editor li { display: block; float: left; overflow: hidden; line-height: 1.5; }
 
 .tag-editor li:first-child {
 	display: none;
 }
-
 
 .tag-editor div { float: left; padding: 0 4px; }
 .tag-editor .placeholder { padding: 0 8px; color: #bbb; }
@@ -40,19 +38,22 @@ body input.tag-editor-hidden-src {
 
 /* tag style */
 .tag-editor .tag-editor-tag {
-	padding: 4px 7px; color: #46799b; background: #e0eaf1; white-space: nowrap;
-	overflow: hidden; cursor: pointer; border-radius: 2px 0 0 2px;
+	white-space: nowrap;
+	overflow: hidden; cursor: pointer;
 }
 
 /* delete icon */
-.tag-editor .tag-editor-delete { cursor: pointer; padding: 4px 6px; border-radius: 0 2px 2px 0; }
+.tag-editor .tag-editor-delete { cursor: pointer; padding: 6px 0; border-radius: 0 2px 2px 0; }
 .tag-editor .tag-editor-delete i {
-	display: inline-block; width: 7px; height: 7px; vertical-align: middle; background: url(delete.png) 0 0 no-repeat;
+	display: inline-block; width: 7px; height: 7px; vertical-align: middle;
 	position: relative; top: -1px;
 }
 .tag-editor .tag-editor-delete:hover i { background-position: 0 -14px; }
 .tag-editor .tag-editor-tag.active+.tag-editor-delete,
-.tag-editor .tag-editor-tag.active+.tag-editor-delete i { background: none; cursor: text; }
+.tag-editor .tag-editor-tag.active+.tag-editor-delete i {
+	font-size: 13px;
+	cursor: text;
+}
 
 .tag-editor .tag-editor-tag.active { background: none !important; }
 
@@ -67,9 +68,50 @@ body input.tag-editor-hidden-src {
 .ui-helper-hidden-accessible { display: none; }
 
 
-#custom_body_class_value+.tag-editor { background: #fafafa; font-size: 12px; }
+/*#custom_body_class_value+.tag-editor { background: #fafafa; font-size: 12px; }*/
 #custom_body_class_value+.tag-editor .tag-editor-tag {
-	color: #fff; background: #555;
-	border-radius: 2px;
+	padding: 0 5px 1px;
+	font-size: 13px;
+	line-height: 26px;
+	height: 28px;
 }
+
+#custom_body_class_value+.tag-editor .tag-editor-tag.active input {
+	border-color: #5b9dd9;
+	-webkit-box-shadow: 0 0 2px rgba( 30, 140, 190, 0.8 );
+	box-shadow: 0 0 2px rgba( 30, 140, 190, 0.8 );
+}
+
+#custom_body_class_value+.tag-editor .tag-editor-tag:not(.active) {
+	color: #444;
+	border: none;
+	background: transparent;
+
+	display: inline-block;
+	text-decoration: none;
+
+	margin: 0;
+	cursor: pointer;
+	white-space: nowrap;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#custom_body_class_value+.tag-editor .tag-editor-tag:before {
+	content: ".";
+}
+
+
+#custom_body_class_value+.tag-editor .tag-editor-delete:before {
+	content: "\f153";
+	display: block;
+	color: #b4b9be;
+	font-size: 16px;
+}
+
+#custom_body_class_value+.tag-editor .tag-editor-delete:hover:before {
+	color: #c00;
+}
+
 #custom_body_class_value+.tag-editor .tag-editor-spacer { display:none; }

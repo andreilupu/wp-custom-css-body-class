@@ -101,9 +101,13 @@ class CustomBodyClassPlugin {
 		if (is_admin() && $this->is_edit_page() ) {
 			wp_enqueue_style( $this->plugin_slug . '-admin-style', plugins_url( 'css/admin-custom-body-class.css', __FILE__ ), array(  ), $this->version );
 			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'js/admin-custom-body-class.js', __FILE__ ), array( 'jquery' ), $this->version );
-//			wp_localize_script( $this->plugin_slug . '-admin-script', 'locals', array(
-//				'ajax_url' => admin_url( 'admin-ajax.php' )
-//			) );
+			global $post;
+			if ( isset( $this->plugin_settings['enable_autocomplete'] ) && $this->plugin_settings['enable_autocomplete'] ) {
+				$values = $this->get_unique_post_meta_values();
+				if ( ! empty ( $values ) ) {
+					$val = wp_localize_script( $this->plugin_slug . '-admin-script', 'custom_body_class_post_values', $values );
+				}
+			}
 		}
 	}
 
@@ -218,8 +222,8 @@ class CustomBodyClassPlugin {
 		$value = get_post_meta( $post->ID, '_custom_body_class', true );
 
 		echo '<label for="body_class_new_field">';
-//		_e( 'Add here your unique CSS class:', 'body_class_textdomain' );
 		echo '</label> ';
+
 		echo '<input type="text" id="custom_body_class_value" name="custom_body_class_value" value="' . esc_attr( $value ) . '" size="32" />';
 	}
 
@@ -305,6 +309,34 @@ class CustomBodyClassPlugin {
 	function ajax_no_access() {
 		echo 'you have no access here';
 		die();
+	}
+
+	function get_unique_post_meta_values( $key = '_custom_body_class', $type = 'nav', $status = '*' ) {
+		global $wpdb;
+		if( empty( $key ) )
+			return;
+		$res = $wpdb->get_col( $wpdb->prepare( "
+SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
+LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+WHERE pm.meta_key = '%s'
+AND p.post_type != '%s'
+", $key, $type ) );
+
+		$rezult = array();
+		if ( ! empty( $res ) ) {
+			foreach ( $res as $k => $val ) {
+				$values = explode( ' ', $val );
+
+				if ( ! empty( $values ) ) {
+					foreach ( $values as $i => $value ) {
+						if ( ! in_array( $value, $rezult ) ) {
+							$rezult[] = $value;
+						}
+					}
+				}
+			}
+		}
+		return $rezult;
 	}
 
 	function get_the_post_id( $id, $post_type = 'post' ) {

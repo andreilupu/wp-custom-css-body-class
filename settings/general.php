@@ -10,6 +10,12 @@ return array(
 			'type'           => 'switch',
 			'desc' => __( 'Here you can decide if the body class meta box is visible to editors' ),
 		),
+		'enable_autocomplete' => array(
+			'label'          => __( 'Enable Autocomplete', 'custom_body_class_txtd' ),
+			'default'        => true,
+			'type'           => 'switch',
+			'desc' => __( 'Would you like to get auto completed values?' ),
+		),
 		'display_on_post_types' => array(
 			'label'          => __( 'Post Types', 'custom_body_class_txtd' ),
 			'default'        => array('post' => 'on', 'page' => 'on'),
