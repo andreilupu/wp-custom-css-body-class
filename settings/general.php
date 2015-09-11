@@ -21,6 +21,13 @@ return array(
 			'default'        => array('post' => 'on', 'page' => 'on'),
 			'type'           => 'post_types_checkbox',
 			'description' => __( 'Which post types should have fields' ),
-		)
+		),
+
+//		'display_on_taxonomies' => array(
+//			'label'          => __( 'Taxonomies', 'custom_body_class_txtd' ),
+//			'default'        => array( 'category' => 'on' ),
+//			'type'           => 'taxonomies_checkbox',
+//			'description' => __( 'Which taxonomies should have fields' ),
+//		)
 	)
 ); # config
