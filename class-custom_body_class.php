@@ -20,7 +20,7 @@ class CustomBodyClassPlugin {
 	 * @since   1.0.0
 	 * @const   string
 	 */
-	protected $version = '0.0.1';
+	protected $version = '0.0.3';
 
 	/**
 	 * Unique identifier for your plugin.
@@ -288,16 +288,18 @@ class CustomBodyClassPlugin {
 
 	function add_post_type_custom_body_class_in_front( $classes ){
 
-		global $post;
+		if ( is_singular() ){
+			global $post;
 
-		if ( isset ( $post->ID ) ) {
-			$class_string = get_post_meta( $post->ID, '_custom_body_class', true );
+			if ( isset ( $post->ID ) ) {
+				$class_string = get_post_meta( $post->ID, '_custom_body_class', true );
 
-			if  ( ! empty( $class_string ) ) {
-				$classes_array = explode( ' ', $class_string );
+				if  ( ! empty( $class_string ) ) {
+					$classes_array = explode( ' ', $class_string );
 
-				foreach ( $classes_array as $key => $class ) {
-					$classes[] = sanitize_html_class($class);
+					foreach ( $classes_array as $key => $class ) {
+						$classes[] = sanitize_html_class($class);
+					}
 				}
 			}
 		}
