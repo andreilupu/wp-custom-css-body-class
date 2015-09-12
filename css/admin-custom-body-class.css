@@ -1,7 +1,8 @@
 /* surrounding tag container */
 .tag-editor {
-	list-style-type: none; padding: 0 5px 25px 0; margin: 0; overflow: hidden;
-	position: relative;
+	list-style-type: none;
+	min-height: 15px;
+	padding: 0 5px 2px 0; margin: 0; overflow: hidden;
 }
 
 .tag-editor:after {
@@ -10,8 +11,8 @@
 	font-size: 12px;
 	content: "Click here to add classes";
 	position: absolute;
-	bottom: 0;
-	left: 4px;
+	bottom: 5px;
+	left: 12px;
 }
 
 /* core styles usually need no change */
@@ -65,6 +66,7 @@ body input.tag-editor-hidden-src {
 .ui-widget-content { border: 1px solid #bbb; background: #fff; color: #555; }
 .ui-widget-content a { color: #46799b; }
 .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus { background: #e0eaf1; }
 .ui-helper-hidden-accessible { display: none; }
 
 

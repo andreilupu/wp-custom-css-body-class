@@ -100,7 +100,7 @@ class CustomBodyClassPlugin {
 		$screen = get_current_screen();
 		if (is_admin() && $this->is_edit_page() ) {
 			wp_enqueue_style( $this->plugin_slug . '-admin-style', plugins_url( 'css/admin-custom-body-class.css', __FILE__ ), array(  ), $this->version );
-			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'js/admin-custom-body-class.js', __FILE__ ), array( 'jquery' ), $this->version );
+			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'js/admin-custom-body-class.js', __FILE__ ), array( 'jquery', 'jquery-ui-autocomplete' ), $this->version );
 			global $post;
 			if ( isset( $this->plugin_settings['enable_autocomplete'] ) && $this->plugin_settings['enable_autocomplete'] ) {
 				$values = $this->get_unique_post_meta_values();
