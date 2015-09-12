@@ -10,7 +10,7 @@
 Plugin Name: Custom Body Class
 Plugin URI:  http://andrei-lupu.com
 Description: A plugin which allows you to add a custom CSS class the HTML body tag
-Version: 0.0.3
+Version: 0.3.0
 Author: Andrei Lupu
 Author URI: http://andrei-lupu.com
 Author Email: andrei.lupu@pixelgrade.com

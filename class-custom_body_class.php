@@ -20,7 +20,7 @@ class CustomBodyClassPlugin {
 	 * @since   1.0.0
 	 * @const   string
 	 */
-	protected $version = '0.0.3';
+	protected $version = '0.3.0';
 
 	/**
 	 * Unique identifier for your plugin.
