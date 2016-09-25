@@ -311,7 +311,7 @@ class CustomBodyClassPlugin {
 						// check if we are in mobile side
 						if ( wp_is_mobile() ) {
 							// if on mobile but there's no mobile- class, we simply add it
-							if ( -1 !== strpos( $class, 'mobile-' ) ) {
+							if ( false === strpos( $class, 'mobile-' ) ) {
 								$classes[] = sanitize_html_class( $class );
 							} else {
 								// if on mobile and have mobile- class, we remove the mobile- part and just add it
@@ -319,8 +319,10 @@ class CustomBodyClassPlugin {
 								$classes[] = sanitize_html_class( $class );
 							}
 						} else {
-							// we're on the computer
-							$classes[] = sanitize_html_class( $class );
+							// we're on the computer and we need to add just the classes without mobile-
+							if ( false === strpos( $class, 'mobile-' ) ) {
+								$classes[] = sanitize_html_class( $class );
+							}
 						}
 					}
 				}
