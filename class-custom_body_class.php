@@ -98,15 +98,18 @@ class CustomBodyClassPlugin {
 	function enqueue_admin_assets() {
 
 		$screen = get_current_screen();
-		if (is_admin() && $this->is_edit_page() ) {
-			wp_enqueue_style( $this->plugin_slug . '-admin-style', plugins_url( 'css/admin-custom-body-class.css', __FILE__ ), array(  ), $this->version );
-			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'js/admin-custom-body-class.js', __FILE__ ), array( 'jquery', 'jquery-ui-autocomplete' ), $this->version );
+		if ( is_admin() && $this->is_edit_page() ) {
+			wp_enqueue_style( $this->plugin_slug . '-admin-style', plugins_url( 'css/admin-custom-body-class.css', __FILE__ ), array(), $this->version );
+			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'js/admin-custom-body-class.js', __FILE__ ), array(
+				'jquery',
+				'jquery-ui-autocomplete'
+			), $this->version );
 			global $post;
 			if ( isset( $this->plugin_settings['enable_autocomplete'] ) && $this->plugin_settings['enable_autocomplete'] ) {
 				$values = $this->get_unique_post_meta_values();
-				if ( ! empty ( $values ) ) {
-					$val = wp_localize_script( $this->plugin_slug . '-admin-script', 'custom_body_class_post_values', $values );
-				}
+//				if ( ! empty ( $values ) ) {
+				$val = wp_localize_script( $this->plugin_slug . '-admin-script', 'custom_body_class_post_values', $values );
+//				}
 			}
 		}
 	}
@@ -145,18 +148,23 @@ class CustomBodyClassPlugin {
 		load_plugin_textdomain( $domain, false, basename( dirname( __FILE__ ) ) . '/lang/' );
 	}
 
-	function is_edit_page($new_edit = null){
+	function is_edit_page( $new_edit = null ) {
 		global $pagenow;
 		//make sure we are on the backend
-		if (!is_admin()) return false;
+		if ( ! is_admin() ) {
+			return false;
+		}
 
 
-		if($new_edit == "edit")
-			return in_array( $pagenow, array( 'post.php',  ) );
-		elseif($new_edit == "new") //check for new post page
+		if ( $new_edit == "edit" ) {
+			return in_array( $pagenow, array( 'post.php', ) );
+		} elseif ( $new_edit == "new" ) //check for new post page
+		{
 			return in_array( $pagenow, array( 'post-new.php' ) );
-		else //check for either new or edit
+		} else //check for either new or edit
+		{
 			return in_array( $pagenow, array( 'post.php', 'post-new.php' ) );
+		}
 	}
 
 	/**
@@ -195,7 +203,7 @@ class CustomBodyClassPlugin {
 		foreach ( $this->plugin_settings['display_on_post_types'] as $post_type => $val ) {
 
 			// Make a nice metabox title
-			$post_type_obj = get_post_type_object($post_type);
+			$post_type_obj  = get_post_type_object( $post_type );
 			$post_type_name = $post_type;
 			if ( $post_type_obj !== null ) {
 				$post_type_name = $post_type_obj->labels->singular_name;
@@ -229,6 +237,7 @@ class CustomBodyClassPlugin {
 
 	/**
 	 * When the post is saved, saves our custom data.
+	 *
 	 * @param int $post_id The ID of the post being saved.
 	 */
 	function custom_body_class_save_meta_data( $post_id ) {
@@ -269,36 +278,52 @@ class CustomBodyClassPlugin {
 
 		// if the value is empty just clear the field
 		if ( empty( $_POST['custom_body_class_value'] ) ) {
-			update_post_meta( $post_id, '_custom_body_class', '', $old_value);
+			update_post_meta( $post_id, '_custom_body_class', '', $old_value );
+
 			return;
 		}
 
 		$classes_array = explode( ' ', $_POST['custom_body_class_value'] );
 
 		foreach ( $classes_array as $key => $class ) {
-			$classes_array[$key] = sanitize_html_class( $class );
+			$classes_array[ $key ] = sanitize_html_class( $class );
 		}
 
 		$sanitized_value = implode( ' ', $classes_array );
 
 		if ( ! empty( $sanitized_value ) ) {
-			update_post_meta( $post_id, '_custom_body_class', $sanitized_value, $old_value);
+			update_post_meta( $post_id, '_custom_body_class', $sanitized_value, $old_value );
 		}
 	}
 
-	function add_post_type_custom_body_class_in_front( $classes ){
+	function add_post_type_custom_body_class_in_front( $classes ) {
 
-		if ( is_singular() ){
+		if ( is_singular() ) {
 			global $post;
 
 			if ( isset ( $post->ID ) ) {
 				$class_string = get_post_meta( $post->ID, '_custom_body_class', true );
 
-				if  ( ! empty( $class_string ) ) {
+				if ( ! empty( $class_string ) ) {
 					$classes_array = explode( ' ', $class_string );
 
 					foreach ( $classes_array as $key => $class ) {
-						$classes[] = sanitize_html_class($class);
+						// check if we are in mobile side
+						if ( wp_is_mobile() ) {
+							// if on mobile but there's no mobile- class, we simply add it
+							if ( false === strpos( $class, 'mobile-' ) ) {
+								$classes[] = sanitize_html_class( $class );
+							} else {
+								// if on mobile and have mobile- class, we remove the mobile- part and just add it
+								$class = str_replace('mobile-', '', $class);
+								$classes[] = sanitize_html_class( $class );
+							}
+						} else {
+							// we're on the computer and we need to add just the classes without mobile-
+							if ( false === strpos( $class, 'mobile-' ) ) {
+								$classes[] = sanitize_html_class( $class );
+							}
+						}
 					}
 				}
 			}
@@ -315,8 +340,9 @@ class CustomBodyClassPlugin {
 
 	function get_unique_post_meta_values( $key = '_custom_body_class', $type = 'nav', $status = '*' ) {
 		global $wpdb;
-		if( empty( $key ) )
+		if ( empty( $key ) ) {
 			return;
+		}
 		$res = $wpdb->get_col( $wpdb->prepare( "
 SELECT DISTINCT pm.meta_value FROM {$wpdb->postmeta} pm
 LEFT JOIN {$wpdb->posts} p ON p.ID = pm.post_id
@@ -338,12 +364,13 @@ AND p.post_type != '%s'
 				}
 			}
 		}
+
 		return $rezult;
 	}
 
 	function get_the_post_id( $id, $post_type = 'post' ) {
-		if(function_exists('icl_object_id')) {
-			return icl_object_id($id, $post_type, true);
+		if ( function_exists( 'icl_object_id' ) ) {
+			return icl_object_id( $id, $post_type, true );
 		} else {
 			return $id;
 		}
