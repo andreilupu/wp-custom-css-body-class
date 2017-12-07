@@ -6,7 +6,7 @@
  * provide the user interface to the end user.
  *
  * @package   PixTypes
- * @author    Andrei Lupu <andrei.lupu@pixelgrade.com>
+ * @author    Andrei Lupu <euthelup@gmail.com>
  * @license   GPL-2.0+
  * @link      http://andrei-lupu.com
  * @copyright 2013 Pixel Grade Media

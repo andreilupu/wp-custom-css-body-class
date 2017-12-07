@@ -16,6 +16,14 @@ return array(
 			'type'           => 'switch',
 			'desc' => __( 'Would you like to get auto completed values?' ),
 		),
+
+		'global_class' => array(
+			'label'          => __( 'Global Class', 'custom_body_class_txtd' ),
+			'default'        => '',
+			'type'           => 'text',
+			'description' => __( 'If you need a temporary CSS class on the entire website here is the place' ),
+		),
+		
 		'display_on_post_types' => array(
 			'label'          => __( 'Post Types', 'custom_body_class_txtd' ),
 			'default'        => array('post' => 'on', 'page' => 'on'),

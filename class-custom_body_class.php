@@ -2,7 +2,7 @@
 /**
  * CustomBodyClass.
  * @package   CustomBodyClass
- * @author    Andrei Lupu <andrei.lupu@pixelgrade.com>
+ * @author    Andrei Lupu <euthelup@gmail.com>
  * @license   GPL-2.0+
  * @link      http://andrei-lupu.com
  * @copyright 2014 Andrei Lupu
@@ -11,7 +11,7 @@
 /**
  * Plugin class.
  * @package   CustomBodyClass
- * @author    Andrei Lupu <andrei.lupu@pixelgrade.com>
+ * @author    Andrei Lupu <euthelup@gmail.com>
  */
 class CustomBodyClassPlugin {
 
@@ -20,7 +20,7 @@ class CustomBodyClassPlugin {
 	 * @since   1.0.0
 	 * @const   string
 	 */
-	protected $version = '0.4.0';
+	protected $version = '0.5.0';
 
 	/**
 	 * Unique identifier for your plugin.
@@ -327,6 +327,16 @@ class CustomBodyClassPlugin {
 					}
 				}
 			}
+		}
+
+		if ( ! empty( $this->plugin_settings['global_class'] ) ) {
+
+			// for the non mobil version you should use the :not() selector
+			if ( wp_is_mobile() ) {
+				$classes[] = sanitize_html_class( 'mobile-' . $this->plugin_settings['global_class'] );
+			}
+
+			$classes[] = sanitize_html_class( $this->plugin_settings['global_class'] );
 		}
 
 		// return the $classes array

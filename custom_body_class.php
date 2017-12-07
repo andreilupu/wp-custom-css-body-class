@@ -1,19 +1,12 @@
 <?php
 /*
-* @package   CustomBodyClass
-* @author    PixelGrade <andrei.lupu@pixelgrade.com>
-* @license   GPL-2.0+
-* @link      http://andrei-lupu.com
-* @copyright 2014 PixelGrade
-*
-* @wordpress-plugin
 Plugin Name: Custom Body Class
-Plugin URI:  http://andrei-lupu.com
+Plugin URI:  https://a.lupu.pro
 Description: A plugin which allows you to add a custom CSS class the HTML body tag
-Version: 0.4.0
+Version: 0.5.0
 Author: Andrei Lupu
-Author URI: http://andrei-lupu.com
-Author Email: andrei.lupu@pixelgrade.com
+Author URI: https://a.lupu.pro
+Author Email: euthelup@gmail.com
 Text Domain: custom_body_class
 License:     GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
