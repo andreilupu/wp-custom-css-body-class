@@ -5,25 +5,26 @@ return array(
 	'label'   => 'General Settings',
 	'options' => array(
 		'allow_edit_on_post_page' => array(
-			'label'          => __( 'Allow Edit Fields', 'custom_body_class_txtd' ),
+			'label'          => __( 'Enable Custom Body Class Editor.(Disabling this will not remove the classes from front-end)', 'custom_body_class_txtd' ),
 			'default'        => true,
 			'type'           => 'switch',
-			'desc' => __( 'Here you can decide if the body class meta box is visible to editors' ),
+		),
+		'admins_only' => array(
+			'label'          => __( 'Restrict for Administrators only', 'custom_body_class_txtd' ),
+			'default'        => false,
+			'type'           => 'switch',
 		),
 		'enable_autocomplete' => array(
 			'label'          => __( 'Enable Autocomplete', 'custom_body_class_txtd' ),
 			'default'        => true,
 			'type'           => 'switch',
-			'desc' => __( 'Would you like to get auto completed values?' ),
 		),
-
 		'global_class' => array(
 			'label'          => __( 'Global Class', 'custom_body_class_txtd' ),
 			'default'        => '',
 			'type'           => 'text',
-			'description' => __( 'If you need a temporary CSS class on the entire website here is the place' ),
+			'desc' => __( 'If you need a temporary CSS class on the entire website here is the place' ),
 		),
-		
 		'display_on_post_types' => array(
 			'label'          => __( 'Post Types', 'custom_body_class_txtd' ),
 			'default'        => array('post' => 'on', 'page' => 'on'),

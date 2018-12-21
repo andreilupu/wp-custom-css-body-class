@@ -20,7 +20,7 @@ class CustomBodyClassPlugin {
 	 * @since   1.0.0
 	 * @const   string
 	 */
-	protected $version = '0.5.0';
+	protected $version = '0.6.0';
 
 	/**
 	 * Unique identifier for your plugin.
@@ -69,7 +69,6 @@ class CustomBodyClassPlugin {
 
 		$this->get_plugin_settings();
 
-
 		// Load plugin text domain
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
@@ -78,17 +77,24 @@ class CustomBodyClassPlugin {
 		// Add an action link pointing to the options page.
 		$plugin_basename = plugin_basename( plugin_dir_path( __FILE__ ) . 'custom_body_class.php' );
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
+		
+		// here is where the magic happens in front-end.
+		add_filter( 'body_class', array( $this, 'add_post_type_custom_body_class_in_front' ) );
 
-		if ( isset( $this->plugin_settings['allow_edit_on_post_page'] ) && $this->plugin_settings['allow_edit_on_post_page'] ) {
-
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
-
-			// add the metabox
-			add_action( 'add_meta_boxes', array( $this, 'add_custom_body_class_meta_box' ) );
-			add_action( 'save_post', array( $this, 'custom_body_class_save_meta_data' ) );
+		// very poor option name that I've picked years ago.
+		// this actually means: allow this feature on the editor page or not.
+		if ( ! isset( $this->plugin_settings['allow_edit_on_post_page'] ) || $this->plugin_settings['allow_edit_on_post_page'] !== "1" ) {
+			return;
+		}
+		if ( isset( $this->plugin_settings['admins_only'] ) && $this->plugin_settings['admins_only'] === "1" && ! current_user_can( 'manage_options' ) ) {
+			return;
 		}
 
-		add_filter( 'body_class', array( $this, 'add_post_type_custom_body_class_in_front' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
+			
+		// add the metabox
+		add_action( 'add_meta_boxes', array( $this, 'add_custom_body_class_meta_box' ) );
+		add_action( 'save_post', array( $this, 'custom_body_class_save_meta_data' ) );
 	}
 
 

@@ -5,7 +5,7 @@
 			delimiter: ' '
 		};
 
-		if ( typeof custom_body_class_post_values !==undefined ) {
+		if ( typeof custom_body_class_post_values !== "undefined" ) {
 			args['autocomplete'] = {
 				//delay: 0, // show suggestions immediately
 				//position: { collision: 'none' }, // automatic menu position up/down
