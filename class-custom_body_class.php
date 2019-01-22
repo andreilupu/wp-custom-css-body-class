@@ -113,10 +113,15 @@ class CustomBodyClassPlugin {
 			global $post;
 			if ( isset( $this->plugin_settings['enable_autocomplete'] ) && $this->plugin_settings['enable_autocomplete'] ) {
 				$values = $this->get_unique_post_meta_values();
-//				if ( ! empty ( $values ) ) {
 				$val = wp_localize_script( $this->plugin_slug . '-admin-script', 'custom_body_class_post_values', $values );
-//				}
 			}
+
+			// load a gutenberg plugin.
+			wp_enqueue_script(
+				$this->plugin_slug . 'gb-admin-script',
+				plugins_url( 'js/pluginAPI.build.js', __FILE__ ),
+				array( 'wp-editor', 'wp-edit-post', )
+			);
 		}
 	}
 
