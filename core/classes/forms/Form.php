@@ -155,14 +155,16 @@ class CustomBodyClassFormImpl extends CustomBodyClassHTMLElementImpl implements 
 	 * @return string
 	 */
 	function __toString() {
-		return $this->startform();;
+		return $this->startform();
 	}
 
 	/**
+	 * Starts the form tag and prints input field.
+	 *
 	 * @return string
 	 */
 	function startform() {
-		return "<form {$this->htmlattributes()}>";
+		return "<form {$this->htmlattributes()}>" . $this->addnonce();
 	}
 
 	/**
@@ -170,6 +172,14 @@ class CustomBodyClassFormImpl extends CustomBodyClassHTMLElementImpl implements 
 	 */
 	function endform() {
 		return '</form>';
+	}
+
+	/**
+	 * Returns the  nonce field .
+	 * @return string
+	 */
+	function addnonce() {
+		return wp_nonce_field( 'wp-custom-body-class-save-settings', 'wp-custom-body-class-settings-nonce', true, false );
 	}
 
 	/**

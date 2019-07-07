@@ -20,12 +20,12 @@ $attrs = array
 );
 ?>
 <div class="select">
-	<label id="<?php echo $name ?>"><?php echo $label ?></label>
+	<label id="<?php echo esc_attr( $name ); ?>"><?php echo esc_html( $label ); ?></label>
 	<select <?php echo $field->htmlattributes( $attrs ) ?>>
 		<?php foreach ( $this->getmeta( 'options', array() ) as $key => $label ): ?>
 			<option <?php if ($key == $selected): ?>selected<?php endif; ?>
-			        value="<?php echo $key ?>">
-				<?php echo $label ?>
+			        value="<?php echo esc_attr( $key ); ?>">
+				<?php echo esc_html( $label ); ?>
 			</option>
 		<?php endforeach; ?>
 	</select>

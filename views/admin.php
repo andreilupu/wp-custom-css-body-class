@@ -23,22 +23,22 @@ $errors    = $processor->errors(); ?>
 
 	<div id="icon-options-general" class="icon32"><br></div>
 
-	<h2><?php _e( 'Custom Body Class', 'custom_body_class_txtd' ); ?></h2>
+	<h2><?php esc_html_e( 'Custom Body Class', 'wp-custom-body-class' ); ?></h2>
 
 	<?php if ( $processor->ok() ): ?>
 
 		<?php if ( ! empty( $errors ) ): ?>
 			<br/>
 			<p class="update-nag">
-				<strong><?php _e( 'Unable to save settings.', 'custom_body_class_txtd' ); ?></strong>
-				<?php _e( 'Please check the fields for errors and typos.', 'custom_body_class_txtd' ); ?>
+				<strong><?php esc_html_e( 'Unable to save settings.', 'wp-custom-body-class' ); ?></strong>
+				<?php esc_html_e( 'Please check the fields for errors and typos.', 'wp-custom-body-class' ); ?>
 			</p>
 		<?php endif; ?>
 
 		<?php if ( $processor->performed_update() ): ?>
 			<br/>
 			<p class="update-nag">
-				<?php _e( 'Settings have been updated.', 'custom_body_class_txtd' ); ?>
+				<?php esc_html_e( 'Settings have been updated.', 'wp-custom-body-class' ); ?>
 			</p>
 		<?php endif;
 
@@ -47,16 +47,16 @@ $errors    = $processor->errors(); ?>
 		echo $f->field( 'general' )->render();?>
 
 		<button type="submit" class="button button-primary">
-			<?php _e( 'Save Changes', 'custom_body_class_txtd' ); ?>
+			<?php esc_html_e( 'Save Changes', 'wp-custom-body-class' ); ?>
 		</button>
 
 		<?php echo $f->endform() ?>
 
 	<?php elseif ( $status['state'] == 'error' ): ?>
 
-		<h3><?php _e( 'Critical Error', 'custom_body_class_txtd' ); ?></h3>
+		<h3><?php esc_html_e( 'Critical Error', 'wp-custom-body-class' ); ?></h3>
 
-		<p><?php echo $status['message'] ?></p>
+		<p><?php echo esc_html( $status['message'] ); ?></p>
 
 	<?php endif; ?>
 </div>

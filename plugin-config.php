@@ -19,7 +19,7 @@ return array
 (
 	'plugin-name'    => 'custom_body_class',
 	'settings-key'   => 'custom_body_class_settings',
-	'textdomain'     => 'custom_body_class_txtd',
+	'textdomain'     => 'wp-custom-body-class',
 	'template-paths' => array
 	(
 		$basepath . 'core/views/form-partials/',
@@ -57,7 +57,7 @@ return array
 	),
 	'errors'         => array
 	(
-		'not_empty' => __( 'Invalid Value.', custom_body_class::textdomain() ),
+		'not_empty' => esc_html__( 'Invalid Value.', 'wp-custom-body-class' ),
 	),
 	'callbacks'      => array
 	(

@@ -27,7 +27,7 @@ if ( ! empty( $options ) ) { ?>
 					<input type="checkbox" <?php echo $field->htmlattributes( $attrs ); ?> <?php if ( isset( $checked[ $key ] ) && $checked[ $key ] == 'on' ) {
 						echo 'checked="checked"';
 					} ?>/>
-					<?php echo $option; ?>
+					<?php echo esc_html( $option ); ?>
 				</li>
 			<?php } ?>
 		</ul>

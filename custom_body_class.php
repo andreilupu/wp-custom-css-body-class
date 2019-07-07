@@ -1,13 +1,13 @@
 <?php
 /*
 Plugin Name: Custom Body Class
-Plugin URI:  https://a.lupu.pro
+Plugin URI:  https://a.lup.dev
 Description: A plugin which allows you to add a custom CSS class the HTML body tag
-Version: 0.6.0
+Version: 0.7.0
 Author: Andrei Lupu
-Author URI: https://a.lupu.pro
+Author URI: https://a.lup.dev
 Author Email: euthelup@gmail.com
-Text Domain: custom_body_class
+Text Domain: wp-custom-body-class
 License:     GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 Domain Path: /lang

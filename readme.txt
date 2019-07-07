@@ -1,9 +1,9 @@
 === Custom Body Class ===
 Contributors: euthelup
 Tags: custom, body, css, class
-Requires at least: 4.8.0
-Tested up to: 5.0.2
-Stable tag: 0.6.0
+Requires at least: 4.9.0
+Tested up to: 5.2.0
+Stable tag: 0.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,11 @@ the class. For example, if you want to have the class "car" for mobile side, you
 2. After activating Custom Body Class go to any edit page and see the Custom Body Class metabox in the right sidebar.
 
 == Changelog ==
+
+= 0.6.0 =
+* Update: Better escapes for the plugin's settings page.
+* Update: Modified textdomain as the plugin's name.
+* Add: Nonce verification for the plugin's settings page.
 
 = 0.6.0 =
 * Fix: Now the metabox will load even if the Autocomplete feature is off.

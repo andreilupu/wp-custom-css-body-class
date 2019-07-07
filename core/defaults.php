@@ -23,8 +23,8 @@
 	),
 	'errors'    => array
 	(
-		'is_numeric' => __( 'Numberic value required.', custom_body_class::textdomain() ),
-		'not_empty'  => __( 'Field is required.', custom_body_class::textdomain() ),
+		'is_numeric' => esc_html__( 'Numberic value required.', 'wp-custom-body-class' ),
+		'not_empty'  => esc_html__( 'Field is required.', 'wp-custom-body-class' ),
 	),
 	'callbacks' => array
 	(

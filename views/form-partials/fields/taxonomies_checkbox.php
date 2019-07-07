@@ -19,10 +19,10 @@ $taxonomies = get_taxonomies(array(
 if ( ! empty( $taxonomies ) ) { ?>
 	<div class="taxonomies_checkbox">
 		<?php if ( isset( $label ) && !empty( $label ) ) { ?>
-			<h3 class="field_title"><?php echo $label; ?></h3>
+			<h3 class="field_title"><?php echo esc_html( $label ); ?></h3>
 		<?php } ?>
 		<?php if ( isset( $description ) && !empty( $description ) ) { ?>
-			<span class="field_description"><?php echo $description; ?></span>
+			<span class="field_description"><?php echo esc_html( $description ); ?></span>
 		<?php } ?>
 		<ul>
 			<?php
@@ -35,7 +35,7 @@ if ( ! empty( $taxonomies ) ) { ?>
 					<input type="checkbox" <?php echo $field->htmlattributes( $attrs ); ?> <?php if ( isset( $checked[ $taxonomy ] ) && $checked[ $taxonomy ] == 'on' ) {
 						echo 'checked="checked"';
 					} ?>/>
-					<?php echo $taxonomy; ?>
+					<?php echo esc_html( $taxonomy ); ?>
 				</li>
 			<?php } ?>
 		</ul>

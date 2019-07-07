@@ -103,7 +103,10 @@ class CustomBodyClassProcessorImpl implements CustomBodyClassProcessor {
 				throw new Exception( 'Missing option_key in plugin configuration.' );
 			}
 
-			if ( $this->form_was_submitted() ) {
+			if ( current_user_can( 'manage_options' ) && $this->form_was_submitted() ) {
+
+				wp_verify_nonce( 'wp-custom-body-class-settings-nonce', 'wp-custom-body-class-save-settings' );
+
 				$input  = $this->cleanup_input( $_POST );
 				$errors = $this->validate_input( $input );
 

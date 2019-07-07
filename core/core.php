@@ -186,7 +186,7 @@ class custom_body_class {
 	}
 
 	/** @var string the translation text domain */
-	protected static $textdomain = 'custom_body_class_txtd';
+	protected static $textdomain = 'wp-custom-body-class';
 
 	/**
 	 * @return string text domain
@@ -204,7 +204,7 @@ class custom_body_class {
 			self::$textdomain = $textdomain;
 		} else { // null or otherwise empty value
 			// revert to default
-			self::$textdomain = 'custom_body_class_txtd';
+			self::$textdomain = 'wp-custom-body-class';
 		}
 	}
 

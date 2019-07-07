@@ -177,7 +177,7 @@ class CustomBodyClassPlugin {
 	 * Register the administration menu for this plugin into the WordPress Dashboard menu.
 	 */
 	function add_plugin_admin_menu() {
-		$this->plugin_screen_hook_suffix = add_options_page( __( 'Custom Body Class', $this->plugin_slug ), __( 'Custom Body Class', $this->plugin_slug ), 'manage_options', $this->plugin_slug, array(
+		$this->plugin_screen_hook_suffix = add_options_page( esc_html__( 'Custom Body Class', 'wp-custom-body-class' ), esc_html__( 'Custom Body Class', 'wp-custom-body-class' ), 'manage_options', $this->plugin_slug, array(
 			$this,
 			'display_plugin_admin_page'
 		) );
@@ -194,7 +194,7 @@ class CustomBodyClassPlugin {
 	 * Add settings action link to the plugins page.
 	 */
 	function add_action_links( $links ) {
-		return array_merge( array( 'settings' => '<a href="' . admin_url( 'options-general.php?page=custom_body_class' ) . '">' . __( 'Settings', $this->plugin_slug ) . '</a>' ), $links );
+		return array_merge( array( 'settings' => '<a href="' . admin_url( 'options-general.php?page=custom_body_class' ) . '">' . esc_html__( 'Settings', 'wp-custom-body-class' ) . '</a>' ), $links );
 	}
 
 	/**
@@ -217,7 +217,7 @@ class CustomBodyClassPlugin {
 
 			add_meta_box(
 				'custom_body_class',
-				$post_type_name . __( ' classes', 'custom_body_class_txtd' ),
+				$post_type_name . esc_html__( ' classes', 'wp-custom-body-class' ),
 				array( $this, 'custom_body_class_meta_box_callback' ),
 				$post_type,
 				'side'

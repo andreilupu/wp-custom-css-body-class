@@ -45,20 +45,19 @@ if ( $field->hasmeta( 'label-fillins' ) ) {
 if ( $field->hasmeta( 'show_group' ) ) {
 	$attrs['data-show_group'] = $field->getmeta( 'show_group' );
 }
-?>
 
-<?php if ( $rendering == 'inline' ): ?>
+if ( $rendering == 'inline' ): ?>
 	<input <?php echo $field->htmlattributes( $attrs ) ?> />
 
 <?php elseif ( $rendering == 'blocks' ): ?>
 	<div class="switch">
 		<input <?php echo $field->htmlattributes( $attrs ) ?> />
-		<label for="<?php echo $idname ?>"><?php echo $processed_label ?></label>
+		<label for="<?php echo esc_attr( $idname ); ?>"><?php echo esc_html( $processed_label ); ?></label>
 	</div>
 <?php
 else: # rendering != 'inline' {?>
-	<label for="<?php echo $idname ?>">
+	<label for="<?php echo esc_attr( $idname ); ?>">
 		<input <?php echo $field->htmlattributes( $attrs ) ?> />
-		<?php echo $processed_label ?>
+		<?php echo esc_html( $processed_label ); ?>
 	</label>
 	<?php endif; ?>

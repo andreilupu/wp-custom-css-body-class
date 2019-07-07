@@ -23,11 +23,11 @@
 		$fieldexample = $field->getmeta( 'group-example', null );
 		$fieldnote    = $field->getmeta( 'group-note', null ); ?>
 		<div class="field" <?php if ( $fieldconfig['type'] == 'group' ) {
-			echo 'id="' . $fieldname . '"';
+			echo 'id="' . esc_attr( $fieldname ) . '"';
 		} ?> >
 			<?php echo $field->render();
 			if ( ! empty( $fieldnote ) ): ?>
-				<span class="field-note"><?php echo $fieldnote ?></span>
+				<span class="field-note"><?php echo esc_html( $fieldnote ); ?></span>
 			<?php endif; ?>
 		</div>
 	<?php endforeach; ?>
