@@ -3,7 +3,7 @@ Contributors: euthelup
 Tags: custom, body, css, class
 Requires at least: 4.9.0
 Tested up to: 5.2.0
-Stable tag: 0.7.0
+Stable tag: 0.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,7 +23,10 @@ the class. For example, if you want to have the class "car" for mobile side, you
 
 == Changelog ==
 
-= 0.6.0 =
+= 0.7.1 =
+* Update: Check for nonce existence on settings page form.
+
+= 0.7.0 =
 * Update: Better escapes for the plugin's settings page.
 * Update: Modified textdomain as the plugin's name.
 * Add: Nonce verification for the plugin's settings page.
