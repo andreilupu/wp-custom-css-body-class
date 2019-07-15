@@ -84,13 +84,13 @@ class CustomBodyClassProcessorImpl implements CustomBodyClassProcessor {
 	 * @return static $this
 	 */
 	function run() {
+
 		// if the status has been generated we skip execution
 		if ( $this->status !== null ) {
 			return $this;
 		}
 
-		$this->status = array
-		(
+		$this->status = array(
 			'state'      => 'nominal',
 			'errors'     => array(),
 			'dataupdate' => false,
@@ -99,13 +99,15 @@ class CustomBodyClassProcessorImpl implements CustomBodyClassProcessor {
 		try {
 			$option_key = $this->meta->get( 'settings-key', null );
 
-			if ( $option_key === null ) {
-				throw new Exception( 'Missing option_key in plugin configuration.' );
-			}
-
 			if ( current_user_can( 'manage_options' ) && $this->form_was_submitted() ) {
 
-				wp_verify_nonce( 'wp-custom-body-class-settings-nonce', 'wp-custom-body-class-save-settings' );
+				if( ! isset( $_POST['wp-custom-body-class-settings-nonce'] ) || ! wp_verify_nonce( $_POST['wp-custom-body-class-settings-nonce'], 'wp-custom-body-class-save-settings' ) ) {
+					die( '<h2>Cheatin uh?</h2>' );
+				}
+
+				if ( $option_key === null ) {
+					throw new Exception( 'Missing option_key in plugin configuration.' );
+				}
 
 				$input  = $this->cleanup_input( $_POST );
 				$errors = $this->validate_input( $input );
