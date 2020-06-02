@@ -8,7 +8,7 @@
  * @package   PixTypes
  * @author    Andrei Lupu <euthelup@gmail.com>
  * @license   GPL-2.0+
- * @link      http://andrei-lupu.com
+ * @link      https://lup.dev
  * @copyright 2013 Pixel Grade Media
  */
 

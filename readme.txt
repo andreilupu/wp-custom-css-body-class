@@ -2,8 +2,8 @@
 Contributors: euthelup
 Tags: custom, body, css, class
 Requires at least: 4.9.0
-Tested up to: 5.2.0
-Stable tag: 0.7.1
+Tested up to: 5.4.1
+Stable tag: 0.7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,9 @@ the class. For example, if you want to have the class "car" for mobile side, you
 2. After activating Custom Body Class go to any edit page and see the Custom Body Class metabox in the right sidebar.
 
 == Changelog ==
+
+= 0.7.2 =
+* Fix: Properly instantiate plugin default settings.
 
 = 0.7.1 =
 * Update: Check for nonce existence on settings page form.
