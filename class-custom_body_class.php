@@ -4,7 +4,7 @@
  * @package   CustomBodyClass
  * @author    Andrei Lupu <euthelup@gmail.com>
  * @license   GPL-2.0+
- * @link      http://andrei-lupu.com
+ * @link      https://lup.dev
  * @copyright 2014 Andrei Lupu
  */
 
@@ -20,7 +20,7 @@ class CustomBodyClassPlugin {
 	 * @since   1.0.0
 	 * @const   string
 	 */
-	protected $version = '0.6.0';
+	protected $version = '0.7.2';
 
 	/**
 	 * Unique identifier for your plugin.
@@ -86,7 +86,12 @@ class CustomBodyClassPlugin {
 		if ( ! isset( $this->plugin_settings['allow_edit_on_post_page'] ) || $this->plugin_settings['allow_edit_on_post_page'] !== "1" ) {
 			return;
 		}
-		if ( isset( $this->plugin_settings['admins_only'] ) && $this->plugin_settings['admins_only'] === "1" && ! current_user_can( 'manage_options' ) ) {
+
+		if (
+			isset( $this->plugin_settings['admins_only'] )
+			&& $this->plugin_settings['admins_only'] === "1"
+			&& ! current_user_can( 'manage_options' )
+		) {
 			return;
 		}
 
@@ -111,15 +116,12 @@ class CustomBodyClassPlugin {
 				'jquery-ui-autocomplete'
 			), $this->version );
 			global $post;
-			if ( isset( $this->plugin_settings['enable_autocomplete'] ) && $this->plugin_settings['enable_autocomplete'] ) {
+			if ( isset( $this->plugin_settings['enable_autocomplete'] ) && $this->plugin_settings['enable_autocomplete'] === "1" ) {
 				$values = $this->get_unique_post_meta_values();
-//				if ( ! empty ( $values ) ) {
 				$val = wp_localize_script( $this->plugin_slug . '-admin-script', 'custom_body_class_post_values', $values );
-//				}
 			}
 		}
 	}
-
 
 	/**
 	 * Return an instance of this class.
@@ -160,7 +162,6 @@ class CustomBodyClassPlugin {
 		if ( ! is_admin() ) {
 			return false;
 		}
-
 
 		if ( $new_edit == "edit" ) {
 			return in_array( $pagenow, array( 'post.php', ) );
