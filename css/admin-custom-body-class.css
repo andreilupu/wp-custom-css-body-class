@@ -104,7 +104,6 @@ body input.tag-editor-hidden-src {
 	content: ".";
 }
 
-
 #custom_body_class_value+.tag-editor .tag-editor-delete:before {
 	content: "\f153";
 	display: block;
