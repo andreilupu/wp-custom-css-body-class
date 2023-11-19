@@ -1,12 +1,25 @@
-steps:
-  - name: Checkout
-    uses: actions/checkout@v4
+name: Performance Tests
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  performance-tests:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
 
-  - name: Run performance tests
-    uses: swissspidy/wp-performance-action@v1
-    with:
-      plugins: |
-        ./wp-custom-css-body-class
-      urls: |
-        /
-        /sample-page/
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run performance tests
+        uses: swissspidy/wp-performance-action@main
+        with:
+          plugins: |
+            ./wp-custom-css-body-class
+          urls: |
+            /
+            /sample-page/
+      - name: 'Echo results path'
+        run: echo ${{steps.performance-tests.outputs.results}}
