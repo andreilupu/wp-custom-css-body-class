@@ -9,3 +9,6 @@ codekit-config.json
 node_modules
 build
 *-ck.js
+
+## allow for local wp-env overrides
+.wp-env.override.json
