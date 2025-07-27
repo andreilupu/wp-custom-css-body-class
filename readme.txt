@@ -2,8 +2,8 @@
 Contributors: euthelup
 Tags: custom, body, css, class
 Requires at least: 5.2.0
-Tested up to: 6.7.1
-Stable tag: 0.7.4
+Tested up to: 6.8.2
+Stable tag: 0.7.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,8 +37,12 @@ If you find this plugin helpful, or you just want to send me a coffee here are t
 
 == Changelog ==
 
+= 0.7.5 =
+* Fix: Fixed a notice about textdomain loaded too early.
+* Update: Check compatibility with WordPress 6.8.2 and PHP 8.3.*
+
 = 0.7.4 =
-* Update: Check compatibility with WordPress 6.7.1 and PHP 8.2.
+* Update: Check compatibility with WordPress 6.7.1 and PHP 8.2.*
 
 = 0.7.3 =
 * Update: Check compatibility with 6.0.0.
